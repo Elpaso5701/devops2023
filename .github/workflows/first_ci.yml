@@ -1,39 +1,83 @@
-name: GitHub Actions Demo
-
-run-name: ${{ github.actor }} is testing out GitHub Actions
+name: Continuous Integration
 
 on:
 
   push:
 
+    branches:
+
+      - main
+
+      - jenk
+
   workflow_dispatch:
+
+  
 
 jobs:
 
-  Explore-GitHub-Actions:
+  my_first_job:
 
     runs-on: ubuntu-latest
 
+ 
+
     steps:
 
-      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+    
 
-      - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+    - name: Set up JDK 17
 
-      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      uses: actions/setup-java@v3
 
-      - name: Check out repository code
+      with:
 
-        uses: actions/checkout@v3
+        java-version: '17'
 
-      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+        distribution: 'zulu'
 
-      - run: echo "The workflow is now ready to test your code on the runner."
+ 
 
-      - name: List files in the repository
+    - name: Show Java version
 
-        run: |
+      run: "java -version"
 
-          ls ${{ github.workspace }}
+ 
 
-      - run: echo "This job's status is ${{ job.status }}."
+    - name: Checkout code
+
+      uses: actions/checkout@v3
+
+      with:
+
+        ref: jenk
+
+ 
+
+    - name: Show directory
+
+      run: 'pwd'
+
+ 
+
+    - name: List files
+
+      run: 'ls -al'
+
+ 
+
+    - name: Install Dependencies
+
+      run: 'mvn compile'
+
+ 
+
+    - name: Build application
+
+      run: 'mvn package -DskipTests'
+
+ 
+
+    - name: Test application
+
+      run: 'mvn test'
