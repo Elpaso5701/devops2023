@@ -53,6 +53,8 @@ jobs:
       run: |
           git checkout -b feature-branch
           # Make changes to the code here
+          # Add debug information to verify the current state
+          echo "Some changes" >> example.txt
 
     - name: Commit and push changes
       run: |
