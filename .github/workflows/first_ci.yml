@@ -52,8 +52,8 @@ jobs:
     
       run: |
           git fetch origin
-          git checkout -b feature-branch origin/jenk
-          git branch # Verify that you are on the new branch
+          git checkout -b new origin/jenk
+          git branch 
 
   
     - name: Install Dependencies
