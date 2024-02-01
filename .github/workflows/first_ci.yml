@@ -51,9 +51,12 @@ jobs:
     - name: Clone project from jenk branch
     
       run: |
+         timestamp=$(date +%s)
+          branch_name="new_branch_$timestamp"
           git fetch origin
-          git checkout -b new origin/jenk
-          git branch 
+          git checkout -b $branch_name origin/jenk
+          git branch
+          echo "::set-output name=new_branch::$branch_name" 
 
   
     - name: Install Dependencies
