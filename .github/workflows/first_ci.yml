@@ -51,6 +51,7 @@ jobs:
     - name: Clone project from jenk branch
     
       run: |
+          git fetch origin
           git checkout -b feature-branch origin/jenk
           git branch # Verify that you are on the new branch
 
