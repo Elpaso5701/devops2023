@@ -58,6 +58,8 @@ jobs:
 
     - name: Commit and push changes
       run: |
+          git config --global user.email "tentacool5701@gmail.com"
+          git config --global user.name "Oleksii"
           git add .
           git commit -m "Update project code in feature branch"
           git push origin feature-branch
